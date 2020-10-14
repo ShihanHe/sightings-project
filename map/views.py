@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from sightings.models import Squirrel
 
 def index(request):
-    return render(request'map/index.heml',{})
+    
+    squirrels = Squirrel.objects.all()
+
+    context = { 'squirrels' : squirrels, }
+
+    return render(request'map/map.html',conext)
