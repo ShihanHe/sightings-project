@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Squirrel
 
+from django.http import HttpResponse
 
 
 def list_of_squirrel(request):
