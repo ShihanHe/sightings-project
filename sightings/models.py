@@ -14,7 +14,10 @@ class Squirrel(models.Model):
         max_length=100,
     )
 
-    Date = models.DateField(auto_now_add=True )
+    Date = models.DateField(
+        max_length=100,
+        blank=True,
+    )
 
     Age = models.CharField(
         max_length=100,
