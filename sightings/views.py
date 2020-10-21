@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import Squirrel
 
 from django.http import HttpResponse
@@ -14,7 +15,7 @@ def list_of_squirrels(request):
     return render(request, 'sightings/list.html', context)
 
 def detail(request, Unique_Squirrel_ID):
-    squirrel = get_object_or_404(Squirrel, pk=Unique_Squirrel_ID)
+    squirrel = get_object_or_404(Squirrel, Unique_Squirrel_ID=Unique_Squirrel_ID)
 
     context = {
         'squrriel': squirrel,
