@@ -22,21 +22,25 @@ class Squirrel(models.Model):
     Age = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
     )
 
     Primary_Fur_Color = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
     )
 
     Location = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
     )
 
     Specific_Location = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
     )       
 
     Running = models.BooleanField(blank=True)     
@@ -52,6 +56,7 @@ class Squirrel(models.Model):
     Other_Activitites = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
     )
 
     Kuks = models.BooleanField(blank=True)
