@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs['path']
         pattern = re.compile(r'(\d{2})(\d{2})(\d{4})') 
-        with open(path, 'r', encoding='utf-8') as csv_file:
+        with open(path, 'r', encoding='latin-1') as csv_file:
             
             reader = csv.reader(csv_file, dialect='excel')
             
