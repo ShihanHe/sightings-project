@@ -5,6 +5,6 @@ def map(request):
     
     squirrels = Squirrel.objects.all()[:100]
 
-    context = { 'squirrels' : squirrels, }
+    context = { 'squirrels' : squirrels }
 
     return render(request,'map/map.html',context)

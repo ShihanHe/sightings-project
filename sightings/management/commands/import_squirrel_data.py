@@ -14,14 +14,19 @@ class Command(BaseCommand):
         parser.add_argument('path', type=str)
 
     def handle(self, *args, **kwargs):
+
         path = kwargs['path']
+
         pattern = re.compile(r'(\d{2})(\d{2})(\d{4})') 
-        with open(path, 'r', encoding='utf-8') as csv_file:
+        
+        with open(path, 'r', encoding='latin-1') as csv_file:
             
             reader = csv.reader(csv_file, dialect='excel')
             
             next(reader)
+           
             USID = set()
+           
             for row in reader:
                 if row[2] not in USID:
                     month, day, year = pattern.match(row[5]).groups()
@@ -36,13 +41,13 @@ class Command(BaseCommand):
                     Age = row[7], 
                     Primary_Fur_Color = row[8],
                     Location = row[12],
-                    Specific_Location = True if row[14] == 'TRUE' else False,
+                    Specific_Location = row[14],
                     Running = True if row[15] == 'TRUE' else False,
                     Chasing = True if row[16] == 'TRUE' else False,
                     Climbing = True if row[17] == 'TRUE' else False,
                     Eating = True if row[18] == 'TRUE' else False,
                     Foraging = True if row[19] == 'TRUE' else False,
-                    Other_Activitites = True if row[20] == 'TRUE' else False,
+                    Other_Activitites = row[20],
                     Kuks = True if row[21] == 'TRUE' else False,
                     Quaas = True if row[22] == 'TRUE' else False,
                     Moans = True if row[23] == 'TRUE' else False,
