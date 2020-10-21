@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>sightings</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default ">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/sightings">Squirrel Tracker</a></div>
+        <ul class="nav navbar-nav ">
+          <li class="active">
+            <a href="/sightings">Sightings Home</a></li>
+          <li>
+            <a href="/sightings/add">Add A New Sighting</a></li>
+          <li>
+            <a href="/map">Map</a></li>
+          <li>
+            <a href="/sightings/stats">Statistics</a></li>
+        </ul>
+      </div>
+    </nav>
+    <table class="table table-bordered table-responsive table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>latitude</th>
+          <th>longitude</th>
+          <th>unique_squirrel_id</th>
+          <th>shift</th>
+          <th>date</th>
+          <th>age</th>
+          <th>primary_fur_color</th>
+          <th>location</th>
+          <th>specific_location</th>
+          <th>running</th>
+          <th>chasing</th>
+          <th>climbing</th>
+          <th>eating</th>
+          <th>foraging</th>
+          <th>other_activities</th>
+          <th>kuks</th>
+          <th>quaas</th>
+          <th>moans</th>
+          <th>tail_flags</th>
+          <th>tail_twitches</th>
+          <th>approaches</th>
+          <th>indifferent</th>
+          <th>runs_from</th></tr>
+      </thead>
+      <tbody>{% for row in users %}
+        <tr>
+          <td>{{row.Latitude}}</td>
+          <td>{{row.Longitude}}</td>
+          <td>
+            <a href="/sightings/{{row.unique_squirrel_id}}/">{{row.unique_squirrel_id}}</a></td>
+          <td>{{row.Shift}}</td>
+          <td nowrap="nowrap">{{row.Date|date:"F j, Y"}}</td>
+          <td>{{row.Age}}</td>
+          <td>{{row.Primary_Fur_Color}}</td>
+          <td nowrap="nowrap">{{row.Location}}</td>
+          <td>{{row.Specific_Location}}</td>
+          <td>{{row.Running}}</td>
+          <td>{{row.Chasing}}</td>
+          <td>{{row.Climbing}}</td>
+          <td>{{row.Eating}}</td>
+          <td>{{row.Foraging}}</td>
+          <td>{{row.Other_Activities}}</td>
+          <td>{{row.Kuks}}</td>
+          <td>{{row.Quaas}}</td>
+          <td>{{row.Moans}}</td>
+          <td>{{row.Tail_flags}}</td>
+          <td>{{row.Tail_twitches}}</td>
+          <td>{{row.Approaches}}</td>
+          <td>{{row.Indifferent}}</td>
+          <td>{{row.Runs_from}}</td>
+          <td>
+            <a href="/sightings/{{row.unique_squirrel_id}}/">edit</a></td>
+          <td>
+            <a href="/sightings/{{row.unique_squirrel_id}}/delete/">delete</a></td>
+        </tr>{% endfor %}</tbody>
+    </table>
+    <nav aria-label="...">
+      <ul class="pagination">
+        {% if users.has_previous %}
+        <li class="abled">
+          <a href="?page=1">
+            <span aria-hidden="true">First</span></a>
+        </li>
+        <li class="abled">
+          <a href="?page={{ users.previous_page_number }}" aria-label="Previous">Previous</a></li>
+        {%else%}
+        <li class="disabled">
+          <a href="?page=1">
+            <span aria-hidden="true">First</span></a>
+        </li>
+        <li class="disabled">
+          <a href="#">Previous</a></li>
+        {% endif %}
+        <li class='active'>
+          <span>{{ users.number }} of {{ users.paginator.num_pages }}</span></li>
+        {% if users.has_next %}
+        <li class="abled">
+          <a href="?page={{ users.next_page_number }}" aria-label="Next">Next</a></li>
+        <li class="abled">
+          <a href="?page={{ users.paginator.num_pages }}">
+            <span aria-hidden="true">Last</span>
+          </a>
+        </li>
+        {%else%}
+        <li class="disabled">
+          <a href="#" aria-label="Next">Next</a></li>
+        <li class="disabled">
+          <a href="?page={{ users.paginator.num_pages }}">
+            <span aria-hidden="true">Last</span></a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </body>
+
+</html>
