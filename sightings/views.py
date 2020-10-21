@@ -4,10 +4,14 @@ from .models import Squirrel
 from django.http import HttpResponse
 
 
-def list_of_squirrel(request):
 
+def list_of_squirrels(request):
+    squirrels = Squirrel.objects.all()
+    context = {
+            'squirrels': squirrels,
+    }
 
-    return render(request, 'sightings/lists.html', context)
+    return render(request, 'sightings/list.html', context)
 
 def update_squirrel(request):
 
