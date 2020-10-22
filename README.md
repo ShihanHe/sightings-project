@@ -1,4 +1,4 @@
-# Squirrel Sightings Project
+# Squirrel Traker Project
 > **Project Name**: Xi Cheng & Shihan He (Section 1) | **Group Member**: Xi Cheng, Shihan He | **UNIs**: [xc2554, sh4087]
 
 ## Management Command
