@@ -18,7 +18,8 @@ def detail(request, Unique_Squirrel_ID):
     squirrel = get_object_or_404(Squirrel, Unique_Squirrel_ID=Unique_Squirrel_ID)
 
     context = {
-        'squrriel': squirrel,
+            'squrriel': squirrel,
+            'ID': Unique_Squirrel_ID,
     }
 
     return render(request, 'sightings/detail.html', context)
