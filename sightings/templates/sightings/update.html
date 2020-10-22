@@ -1,125 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>sightings</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-default ">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/sightings">Squirrel Tracker</a></div>
-        <ul class="nav navbar-nav ">
-          <li>
-            <a href="/map">Map</a></li>
-          <li>
-            <a href="/sightings/add">Add A New Sighting</a></li>
-          <li>
-            <a href="/sightings/stats">Statistics</a></li>
-	</ul>
-      </div>
-    </nav>
-    <table class="table table-bordered table-responsive table-striped table-hover">
-      <caption>Unique Sightings of Squirrel {{ID}}</caption>
-      <thead class="thead-dark">
-        <tr>
-          <th>Unique Squirrel ID</th>
-	  <th>{{squirrel.Unique_Squirrel_ID }}</th>
-	</tr>
-      </thead>
-      <tbody>
-	<tr>
-          <td>Longitude</td>
-	  <td>{{squirrel.Longitude}}</td>
-	</tr>
-        <tr>
-          <td>Shift</td>
-          <td>{{squirrel.Shift}}</td>
-        </tr>
-        <tr>
-          <td>Date</td>
-          <td>{{squirrel.Date}}</td>
-        </tr>
-        <tr>
-          <td>Age</td>
-          <td>{{squirrel.Age}}</td>
-        </tr>
-        <tr>
-          <td>Primary Fur Color</td>
-          <td>{{squirrel.Primary_Fur_Color}}</td>
-        </tr>
-        <tr>
-          <td>Location</td>
-          <td>{{squirrel.Location}}</td>
-        </tr>
-        <tr>
-          <td>Specific Location</td>
-          <td>{{squirrel.Specific_Location}}</td>
-        </tr>
-        <tr>
-          <td>Running</td>
-          <td>{{squirrel.Running}}</td>
-        </tr>
-        <tr>
-          <td>Chasing</td>
-          <td>{{squirrel.Chasing}}</td>
-        </tr>
-	<tr>
-	  <td>Climbing</td>
-          <td>{{squirrel.Climbing}}</td>
-        </tr>
-        <tr>
-          <td>Eating</td>
-          <td>{{squirrel.Eating}}</td>
-        </tr>
-        <tr>
-          <td>Foraging</td>
-          <td>{{squirrel.Foraging}}</td>
-        </tr>
-        <tr>
-          <td>Other Activities</td>
-          <td>{{squirrel.Other_Activitites}}</td>
-        </tr>
-        <tr>
-          <td>Kuks</td>
-          <td>{{squirrel.Kuks}}</td>
-        </tr>
-        <tr>
-          <td>Quaas</td>
-          <td>{{squirrel.Quaas}}</td>
-        </tr>
-        <tr>
-          <td>Moans</td>
-          <td>{{squirrel.Moans}}</td>
-        </tr>
-        <tr>
-          <td>Tail flags</td>
-          <td>{{squirrel.Tail_flags}}</td>
-        </tr>
-        <tr>
-          <td>Tail twitches</td>
-          <td>{{squirrel.Tail_twitches}}</td>
-        </tr>
-        <tr>
-          <td>Approaches</td>
-          <td>{{squirrel.Approaches}}</td>
-        </tr>
-        <tr>
-          <td>Indifferent</td>
-          <td>{{squirrel.Indifferent}}</td>
-        </tr>
-        <tr>
-          <td>Runs from</td>
-          <td>{{squirrel.Runs_from}}</td>
-      </tbody>
-    </table>
-  </body>
 
+<html lang="en">
+<head>
+  <title>Update squirrel sighting</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<p>Updatethe data in the form and save the sighting bu clicking the button at the bottom.</p>
+<button type="button" class="btn btn-link"><a href="/sightings">return to sightings page</a></button>
+<form method="post" novalidate>
+  {% csrf_token %}
+
+  {{ form.non_field_errors }}
+
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+  {% endfor %}
+
+  <table class="table-responsive table-striped" border="1">
+    <tr>
+      <th>Fields</th>
+      <th>Input</th>
+    </tr>
+    {% for field in form.visible_fields %}
+      <tr>
+        <th>{{ field.label_tag }}</th>
+        <td>
+          {{ field.errors }}
+          {{ field }}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+  <input type='submit' value='Save' />
+</form>
+</div>
+</body>
 </html>

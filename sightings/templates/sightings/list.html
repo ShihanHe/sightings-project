@@ -42,7 +42,7 @@
 	  {% for squirrel in squirrels %}
 	  <td>{{squirrel.Unique_Squirrel_ID}}</td>
 	  <td>{{squirrel.Date}}</td>
-	  <td><a href="{% url 'sightings:detail' squirrel.Unique_Squirrel_ID %}">Sightings</a></td> 
+	  <td><a href="{% url 'sightings:update' squirrel.Unique_Squirrel_ID %}">Sightings</a></td> 
         </tr>
 	{% endfor %}
       </tbody>
