@@ -15,29 +15,8 @@
 <button type="button" class="btn btn-link"><a href="/sightings">return to sightings page</a></button>
 <form method="post" novalidate>
   {% csrf_token %}
+  {{ form.as_p }}
 
-  {{ form.non_field_errors }}
-
-  {% for hidden_field in form.hidden_fields %}
-    {{ hidden_field.errors }}
-    {{ hidden_field }}
-  {% endfor %}
-
-  <table class="table-responsive table-striped" border="1">
-    <tr>
-      <th>Fields</th>
-      <th>Input</th>
-    </tr>
-    {% for field in form.visible_fields %}
-      <tr>
-        <th>{{ field.label_tag }}</th>
-        <td>
-          {{ field.errors }}
-          {{ field }}
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
   <input type='submit' value='Save' />
 </form>
 </div>
