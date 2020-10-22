@@ -4,6 +4,8 @@ from .models import Squirrel
 from .forms import SquirrelForm, UpdatingForm
 from django.http import HttpResponse
 
+from django.db.models import Avg, Max, Min, Count
+
 
 
 def list_of_squirrels(request):
@@ -48,13 +50,13 @@ def create_squirrel(request):
 def stats(request):
     squirrels = Squirrel.objects.all()
     a = len(squirrels)
-    b = squirrels.aggregate(min_latitude=Min('Latitude'),max_latitude=Max('Latitude'),average_latitude=Avg('Latitude'))
-    c = squirrels.aggregate(min_latitude=Min('Longitude'),max_latitude=Max('Longitude'),average_latitude=Avg('Longitude'))
+    b = squirrels.aggregate(avg_latitude=Avg('Latitude'))
+    c = squirrels.aggregate(avg_longitude=Avg('Longitude'))
     d = list(squirrels.values_list('Shift').annotate(Count('Shift')))
     e = list(squirrels.values_list('Age').annotate(Count('Age')))
     f = list(squirrels.values_list('Primary_Fur_Color').annotate(Count('Primary_Fur_Color')))
 
-    contex = {
+    context = {
         "a": a,
         "b": b,
         "c": c,
