@@ -14,7 +14,7 @@ def list_of_squirrels(request):
 
     return render(request, 'sightings/list.html', context)
 
-def detail(request, Unique_Squirrel_ID):
+def update(request, Unique_Squirrel_ID):
     squirrel = get_object_or_404(Squirrel, Unique_Squirrel_ID=Unique_Squirrel_ID)
 
     context = {
@@ -22,7 +22,7 @@ def detail(request, Unique_Squirrel_ID):
             'ID': Unique_Squirrel_ID,
     }
 
-    return render(request, 'sightings/detail.html', context)
+    return render(request, 'sightings/update.html', context)
 
 
 def update_squirrel(request):
